@@ -1892,17 +1892,27 @@ img, video {
 
 /* Platform Views */
 .platform-views {
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
     width: 100%;
 }
 .desktop-app-wrapper, .interactive-showcase-wrapper {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    grid-area: 1 / 1;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+    width: 100%;
+}
+.interactive-showcase-wrapper {
+    /* Prevent the phone from being 100% wide if it has max-width */
+    max-width: 1000px;
+    margin-top: 0; /* Reset margin for grid centering */
 }
 .platform-hidden {
     opacity: 0 !important;
     pointer-events: none !important;
-    position: absolute !important;
-    top: 0; left: 0; right: 0;
+    visibility: hidden;
     transform: scale(0.95);
     z-index: -1;
 }

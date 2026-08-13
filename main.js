@@ -323,8 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
     // INTERACTIVE DESKTOP APP LOGIC
-    // ==========================================
-    const appScreens = document.querySelectorAll('.app-screen');
+    // ==========================================    // Desktop Routing Logic
+    const appScreens = document.querySelectorAll('.desktop-app-wrapper .app-screen');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const playTriggers = document.querySelectorAll('.play-trigger, .player-play-btn, .list-item.play-trigger');
     const btnFullscreen = document.getElementById('btn-fullscreen');
