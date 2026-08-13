@@ -1283,3 +1283,37 @@ img, video {
 .bento-card:hover .video-play-btn {
     transform: scale(1.1);
 }
+
+/* Download Page Background */
+.spotlight-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--bg-base);
+}
+
+.spotlight-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+/* Mask the AI watermark in the bottom right corner */
+.spotlight-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at bottom right, rgba(10,10,10,1) 0%, rgba(10,10,10,0) 70%);
+    pointer-events: none;
+}
+
