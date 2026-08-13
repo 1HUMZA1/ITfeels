@@ -157,25 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     }
 
-    // --- Footer Typing Animation ---
-    const footerTypingTitle = document.getElementById('footer-typing-title');
-    if (footerTypingTitle) {
-        const textToType = "- DEVELOPED BY HUMZA.";
-        let i = 0;
-        
-        // Start typing shortly after page load
-        setTimeout(() => {
-            function footerTypeWriter() {
-                if (i < textToType.length) {
-                    footerTypingTitle.textContent += textToType.charAt(i);
-                    i++;
-                    setTimeout(footerTypeWriter, 60); // 60ms per character
-                }
-            }
-            footerTypeWriter();
-        }, 1500);
-    }
-
     // --- 8. Hero Parallax Zoom ---
     const heroMockupInner = document.getElementById('hero-mockup-inner');
     if (heroMockupInner) {
