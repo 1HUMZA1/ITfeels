@@ -592,7 +592,15 @@ img, video {
 /* Remove visual-sm overrides since they now flow naturally */
 
 .bento-card:hover .bento-visual {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateZ(40px) translateY(-10px) scale(1.02);
+}
+
+.bento-card .bento-content {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bento-card:hover .bento-content {
+    transform: translateZ(30px);
 }
 
 /* Showcase Section */

@@ -74,6 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const tiltCards = document.querySelectorAll('.tilt-card, .download-card, .testimonial-card');
         
         tiltCards.forEach(card => {
+            card.style.transformStyle = "preserve-3d";
+            
+            card.addEventListener('mouseenter', () => {
+                // Quick transition when entering
+                card.style.transition = 'transform 0.1s ease-out';
+                setTimeout(() => {
+                    // Disable transition for instantaneous 1:1 mouse tracking
+                    card.style.transition = 'none';
+                }, 100);
+            });
+
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -87,13 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = ((y - centerY) / centerY) * -3; // Max 3deg
-                const rotateY = ((x - centerX) / centerX) * 3;
+                // Slightly more exaggerated tilt for smaller cards
+                const maxTilt = rect.width < 500 ? 5 : 3;
                 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+                const rotateX = ((y - centerY) / centerY) * -maxTilt; 
+                const rotateY = ((x - centerX) / centerX) * maxTilt;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
             
             card.addEventListener('mouseleave', () => {
+                // Restore transition for smooth reset
+                card.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
             });
         });
