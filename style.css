@@ -322,7 +322,6 @@ img, video {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
 }
 
 .hero-mockup-wrapper:hover .hero-mockup {
@@ -358,9 +357,40 @@ img, video {
 }
 
 .float-1 {
-    top: 20%;
-    left: -5%;
+    top: 55%;
+    right: -2%;
+    left: auto;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.15);
     animation: float 6s ease-in-out infinite;
+}
+
+.float-1 .text-accent {
+    color: #facc15 !important;
+}
+
+/* Professional callout line pointing to the 320 KBPS text */
+.float-1::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    width: 40px;
+    height: 1px;
+    background: rgba(250, 204, 21, 0.5);
+}
+
+.float-1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -44px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #facc15;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
 }
 
 .float-2 {
