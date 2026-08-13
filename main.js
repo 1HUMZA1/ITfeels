@@ -156,4 +156,96 @@ document.addEventListener('DOMContentLoaded', () => {
             typeWriter();
         }, 800);
     }
+
+    // --- 7. Feature Section Interactions ---
+    
+    // Lossless Format Toggle
+    const formatBtn = document.getElementById('formatToggleBtn');
+    if (formatBtn) {
+        const formats = ['320 kbps • Lossless', 'FLAC • 1411 kbps', 'Hi-Res • 24-bit/96kHz'];
+        let currentFormat = 0;
+        formatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentFormat = (currentFormat + 1) % formats.length;
+            formatBtn.textContent = formats[currentFormat];
+        });
+    }
+
+    // Lyrics Highlight Toggle
+    const lyricsBtn = document.getElementById('lyricsToggleBtn');
+    const lyricsMockup = document.getElementById('lyricsMockup');
+    if (lyricsBtn && lyricsMockup) {
+        let lyricsOn = true;
+        lyricsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            lyricsOn = !lyricsOn;
+            if (lyricsOn) {
+                lyricsBtn.textContent = 'Lyrics ON';
+                lyricsMockup.style.opacity = '1';
+                lyricsMockup.style.filter = 'blur(0)';
+            } else {
+                lyricsBtn.textContent = 'Lyrics OFF';
+                lyricsMockup.style.opacity = '0.3';
+                lyricsMockup.style.filter = 'blur(5px)';
+            }
+        });
+    }
+
+    // Social Room Join
+    const joinBtn = document.getElementById('joinRoomBtn');
+    const avatarsContainer = document.getElementById('avatarsMock');
+    if (joinBtn && avatarsContainer) {
+        joinBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (joinBtn.textContent === 'JOIN ROOM') {
+                const newAvatar = document.createElement('div');
+                newAvatar.className = 'avatar new-join';
+                newAvatar.innerHTML = '<i class="fa-solid fa-user-astronaut"></i>';
+                avatarsContainer.appendChild(newAvatar);
+                joinBtn.textContent = 'LEAVE ROOM';
+                joinBtn.style.background = 'var(--accent-color, #fff)';
+                joinBtn.style.color = '#000';
+            } else {
+                const lastAvatar = avatarsContainer.lastElementChild;
+                if (lastAvatar.classList.contains('new-join')) {
+                    lastAvatar.remove();
+                }
+                joinBtn.textContent = 'JOIN ROOM';
+                joinBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+                joinBtn.style.color = 'var(--text-primary)';
+            }
+        });
+    }
+
+    // Offline Download Mock
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadFill = document.getElementById('downloadFill');
+    const downloadStatus = document.getElementById('downloadStatus');
+    if (downloadBtn && downloadFill && downloadStatus) {
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (downloadBtn.textContent === 'Download') {
+                downloadBtn.textContent = 'Downloading...';
+                downloadFill.style.width = '100%';
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    if (progress <= 100) {
+                        downloadStatus.textContent = progress + '%';
+                    } else {
+                        clearInterval(interval);
+                        downloadStatus.innerHTML = '<i class="fa-solid fa-check"></i> Available Offline';
+                        downloadStatus.style.color = '#4ade80';
+                        downloadBtn.textContent = 'Remove Download';
+                    }
+                }, 200); // Takes 2 seconds (width transition is 2s)
+            } else {
+                downloadFill.style.width = '0%';
+                downloadStatus.textContent = '0%';
+                downloadStatus.style.color = 'var(--text-secondary)';
+                downloadBtn.textContent = 'Download';
+            }
+        });
+    }
+
 });
