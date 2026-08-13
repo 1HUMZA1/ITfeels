@@ -634,3 +634,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+
+    // ==========================================
+    // PLATFORM TOGGLE LOGIC
+    // ==========================================
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const desktopView = document.getElementById('desktop-app-wrapper');
+    const phoneView = document.querySelector('.interactive-showcase-wrapper');
+    
+    // Hide phone by default
+    if(phoneView) phoneView.classList.add('platform-hidden');
+    
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            if(btn.getAttribute('data-platform') === 'desktop') {
+                phoneView.classList.add('platform-hidden');
+                setTimeout(() => desktopView.classList.remove('platform-hidden'), 100);
+            } else {
+                desktopView.classList.add('platform-hidden');
+                setTimeout(() => phoneView.classList.remove('platform-hidden'), 100);
+            }
+        });
+    });
+
