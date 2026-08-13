@@ -507,7 +507,7 @@ img, video {
 }
 
 /* Soft Spotlight on Hover */
-.bento-card::before {
+.bento-card::before, .step-item::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -523,7 +523,7 @@ img, video {
     z-index: 0;
 }
 
-.bento-card:hover::before {
+.bento-card:hover::before, .step-item:hover::before {
     opacity: 1;
 }
 
@@ -677,6 +677,17 @@ img, video {
     text-align: center;
     width: 30%;
     background: var(--bg-base); /* Cover line behind text */
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.step-item:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .step-number {
