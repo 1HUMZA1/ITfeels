@@ -497,45 +497,31 @@ img, video {
 }
 
 .bento-card:hover {
-    transform: translateY(-6px) scale(1.015);
+    transform: translateY(-5px) scale(1.015);
     border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(255, 255, 255, 0.035);
 }
 
-/* Metallic Sweep Animation */
-.bento-card::after {
-    content: '';
+/* Soft Spotlight on Hover */
+.bento-card::before {
+    content: "";
     position: absolute;
-    top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: skewX(-25deg);
-    transition: none;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.bento-card:hover::after {
-    animation: metallic-sweep 1.5s ease-in-out forwards;
-}
-
-@keyframes metallic-sweep {
-    0% { left: -100%; }
-    100% { left: 200%; }
-}
-
-/* Soft Radial Glow on Hover */
-.bento-card::before, .download-card::before, .testimonial-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+    inset: 0;
+    background: radial-gradient(
+        350px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.10),
+        rgba(255, 255, 255, 0.035) 35%,
+        transparent 70%
+    );
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: 0;
 }
 
-.bento-card:hover::before, .download-card:hover::before, .testimonial-card:hover::before {
+.bento-card:hover::before {
     opacity: 1;
 }
 
