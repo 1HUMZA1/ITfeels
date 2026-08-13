@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Feels Music | Build your own soundtracks</title>
+    <meta name="description" content="A premium, open-source music experience for every platform.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+    <!-- Sticky Header -->
+    <header id="header" class="header">
+        <div class="header-inner container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-compact-disc"></i>
+                <span>IT Feels</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#showcase" class="nav-link">Showcase</a>
+                <a href="#how-it-works" class="nav-link">How it works</a>
+                <a href="https://github.com/Allrounder687/it-feels-android" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="download.html" class="btn btn-primary btn-sm nav-cta">Download</a>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section-spacing">
+            <!-- Background Video -->
+            <div class="hero-bg-video-wrapper">
+                <video class="hero-bg-video" autoplay loop muted playsinline>
+                    <source src="assets/intro_animation.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container hero-content">
+                <div class="hero-badge reveal-up">
+                    <span class="badge-icon">✦</span> BUILT FOR CREATORS
+                </div>
+                <h1 class="hero-title reveal-up delay-1"><span id="typing-title"></span><span class="typing-cursor"></span></h1>
+                <p class="hero-subtitle reveal-up delay-2">Experience a premium, lossless audio engine with flawless syncing, collaborative spaces, and offline mastery across all platforms.</p>
+                
+                <div class="hero-actions reveal-up delay-3">
+                    <a href="download.html" class="btn btn-primary magnetic-btn">Get Started &rarr;</a>
+                    <a href="#features" class="btn btn-secondary magnetic-btn">Explore Features</a>
+                </div>
+
+                <div class="hero-mockup-wrapper reveal-up delay-4">
+                    <div class="mockup-glow"></div>
+                    <div class="hero-mockup">
+                        <img src="assets/flutter_01.png" alt="IT Feels Interface" class="mockup-img" onerror="this.src='assets/screen.png'">
+                        
+                        <!-- Floating UI Elements -->
+                        <div class="floating-ui float-1">
+                            <div class="float-content">
+                                <i class="fa-solid fa-music text-accent"></i> 320kbps Lossless
+                            </div>
+                        </div>
+                        <div class="floating-ui float-2">
+                            <div class="float-content">
+                                <i class="fa-solid fa-users text-accent"></i> Live Room Active
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust / Stat Bar -->
+        <section class="trust-bar border-top border-bottom">
+            <div class="container trust-inner">
+                <div class="stat-item">
+                    <span class="stat-value">WINDOWS</span>
+                </div>
+                <span class="stat-divider">&middot;</span>
+                <div class="stat-item">
+                    <span class="stat-value">MACOS</span>
+                </div>
+                <span class="stat-divider">&middot;</span>
+                <div class="stat-item">
+                    <span class="stat-value">ANDROID</span>
+                </div>
+                <span class="stat-divider">&middot;</span>
+                <div class="stat-item">
+                    <span class="stat-value">IOS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Features Section -->
+        <section id="features" class="section-spacing features-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Designed for excellence</h2>
+                    <p class="section-subtitle">A powerful suite of tools crafted for an uncompromised experience.</p>
+                </div>
+                
+                <div class="bento-grid">
+                    <!-- Main Feature (Large) -->
+                    <div class="bento-card bento-large reveal-up tilt-card">
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+                            <h3 class="bento-title">320kbps Lossless Streaming</h3>
+                            <p class="bento-desc">Experience crystal clear audio quality with high-fidelity streaming support. No compromises.</p>
+                        </div>
+                        <div class="bento-visual">
+                             <img src="assets/preview1.png" alt="High Quality Audio" onerror="this.src='assets/screen.png'">
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 (Medium) -->
+                    <div class="bento-card bento-medium reveal-up delay-1 tilt-card">
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <h3 class="bento-title">Synced Lyrics</h3>
+                            <p class="bento-desc">Perfectly timed, line-by-line lyric displays.</p>
+                        </div>
+                        <div class="bento-visual visual-sm">
+                             <img src="assets/flutter_01.png" alt="Lyrics Preview" onerror="this.src='assets/screen.png'">
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 (Small) -->
+                    <div class="bento-card bento-small reveal-up tilt-card">
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-user-group"></i></div>
+                            <h3 class="bento-title">Social Rooms</h3>
+                            <p class="bento-desc">Listen together in synchronized virtual rooms.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 (Small) -->
+                    <div class="bento-card bento-small reveal-up delay-1 tilt-card">
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                            <h3 class="bento-title">Offline Mode</h3>
+                            <p class="bento-desc">Save your library for blazing fast downloads.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5 (Small) -->
+                    <div class="bento-card bento-small reveal-up delay-2 tilt-card">
+                        <div class="bento-content">
+                            <div class="bento-icon"><i class="fa-solid fa-video"></i></div>
+                            <h3 class="bento-title">Native Video</h3>
+                            <p class="bento-desc">Seamless video player integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- See it in action -->
+        <section id="showcase" class="section-spacing showcase-section">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">See it in action</h2>
+                    <p class="section-subtitle">A seamless experience from start to finish.</p>
+                </div>
+                
+                <div class="app-frame-wrapper reveal-up">
+                    <div class="app-frame-header">
+                        <div class="frame-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="app-frame-body">
+                        <!-- Repurposing intro animation -->
+                        <video class="showcase-video" autoplay loop muted playsinline>
+                            <source src="assets/intro_animation.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section id="how-it-works" class="section-spacing steps-section border-top">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">How it works</h2>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step-connecting-line">
+                        <div class="line-progress"></div>
+                    </div>
+                    
+                    <div class="step-item reveal-up">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title">Create</h3>
+                        <p class="step-desc">Sign up and build your initial library.</p>
+                    </div>
+                    
+                    <div class="step-item reveal-up delay-1">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title">Customize</h3>
+                        <p class="step-desc">Tune your preferences and sync your devices.</p>
+                    </div>
+                    
+                    <div class="step-item reveal-up delay-2">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title">Launch</h3>
+                        <p class="step-desc">Enjoy flawless playback anywhere, anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section-spacing testimonials-section border-top">
+            <div class="container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Loved by listeners</h2>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal-up">
+                        <div class="testimonial-content">
+                            "The synchronization in live rooms is flawless. It feels like we are literally listening in the same room."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="author-info">
+                                <span class="author-name">Alex M.</span>
+                                <span class="author-role">Audiophile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-up delay-1">
+                        <div class="testimonial-content">
+                            "Finally a premium music experience that respects system resources. The dark mode is absolutely stunning."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="author-info">
+                                <span class="author-name">Sarah J.</span>
+                                <span class="author-role">Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal-up delay-2">
+                        <div class="testimonial-content">
+                            "Offline mode is a lifesaver. Everything syncs instantly and the lyrics engine is the best I've seen."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="author-info">
+                                <span class="author-name">David K.</span>
+                                <span class="author-role">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section-spacing final-cta-section border-top">
+            <div class="container text-center">
+                <div class="final-cta-content reveal-up">
+                    <h2 class="section-title">Ready to experience it?</h2>
+                    <p class="section-subtitle">Start building something amazing today.</p>
+                    <a href="download.html" class="btn btn-primary btn-large magnetic-btn mt-4">Get Started &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer border-top">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-compact-disc"></i> IT Feels
+            </div>
+            <p>© 2026 IT Feels Music. MIT License.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Allrounder687/it-feels-android" class="footer-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
