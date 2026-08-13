@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. 3D Tilt Effect for Bento Cards ---
     if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-        const tiltCards = document.querySelectorAll('.tilt-card');
+        const tiltCards = document.querySelectorAll('.tilt-card, .download-card, .testimonial-card');
         
         tiltCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -95,21 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            });
-        });
-    }
-
-    // --- 4.5. Mouse Tracking for Glow Cards (no tilt) ---
-    if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-        const glowCards = document.querySelectorAll('.download-card');
-        
-        glowCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
     }

@@ -445,7 +445,7 @@ img, video {
 }
 
 /* Soft Radial Glow on Hover */
-.bento-card::before, .download-card::before {
+.bento-card::before, .download-card::before, .testimonial-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -456,7 +456,7 @@ img, video {
     z-index: 0;
 }
 
-.bento-card:hover::before, .download-card:hover::before {
+.bento-card:hover::before, .download-card:hover::before, .testimonial-card:hover::before {
     opacity: 1;
 }
 
@@ -643,6 +643,13 @@ img, video {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .testimonial-content {
@@ -798,7 +805,6 @@ img, video {
 }
 
 .download-card:hover {
-    transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     background: rgba(35, 35, 35, 0.6);
