@@ -507,7 +507,7 @@ img, video {
 }
 
 /* Soft Spotlight on Hover */
-.bento-card::before, .step-item::before {
+.bento-card::before, .step-item::before, .download-card::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -523,7 +523,7 @@ img, video {
     z-index: 0;
 }
 
-.bento-card:hover::before, .step-item:hover::before {
+.bento-card:hover::before, .step-item:hover::before, .download-card:hover::before {
     opacity: 1;
 }
 
@@ -898,6 +898,41 @@ img, video {
 .download-card > * {
     position: relative;
     z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.download-card:hover .card-icon { transform: translateZ(40px); }
+.download-card:hover .card-title { transform: translateZ(30px); }
+.download-card:hover .card-meta { transform: translateZ(20px); }
+.download-card:hover .btn { transform: translateZ(50px); }
+
+/* Download Button Highlight on Card Hover */
+.download-card.accent-warm:hover .btn {
+    background: #ff7e5f;
+    color: #000;
+    border-color: #ff7e5f;
+    box-shadow: 0 4px 20px rgba(255, 126, 95, 0.3);
+}
+
+.download-card.accent-cool:hover .btn {
+    background: #00c6ff;
+    color: #000;
+    border-color: #00c6ff;
+    box-shadow: 0 4px 20px rgba(0, 198, 255, 0.3);
+}
+
+.download-card.accent-sage:hover .btn {
+    background: #a8e6cf;
+    color: #000;
+    border-color: #a8e6cf;
+    box-shadow: 0 4px 20px rgba(168, 230, 207, 0.3);
+}
+
+.download-card.accent-rose:hover .btn {
+    background: #ff8b94;
+    color: #000;
+    border-color: #ff8b94;
+    box-shadow: 0 4px 20px rgba(255, 139, 148, 0.3);
 }
 
 .download-card:hover {
