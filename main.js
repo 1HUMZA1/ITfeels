@@ -258,5 +258,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    }
+
+    // --- 9. Scroll Typewriter Animation ---
+    const typewriterElements = document.querySelectorAll('.typewriter-scroll');
+    if (typewriterElements.length > 0) {
+        const typeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const text = el.getAttribute('data-original-text');
+                    el.textContent = '';
+                    let i = 0;
+                    const speed = 13; // ~4.5x faster than 60ms
+                    
+                    function typeWriter() {
+                        if (i < text.length) {
+                            el.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, speed);
+                        }
+                    }
+                    typeWriter();
+                    
+                    observer.unobserve(el);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        typewriterElements.forEach(el => {
+            el.setAttribute('data-original-text', el.textContent.trim());
+            el.textContent = ''; // Clear text before scrolling into view
+            typeObserver.observe(el);
+        });
+    }
 
 });
