@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 7. Hero Typing Animation ---
     const typingTitle = document.getElementById('typing-title');
     if (typingTitle) {
-        const textToType = "Turn Your Ideas Into Something Real.";
+        const textToType = "FEEL THE MUSIC.";
         let i = 0;
         
         // Wait for reveal-up animation to settle
