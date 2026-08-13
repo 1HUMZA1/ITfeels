@@ -320,3 +320,144 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+    // ==========================================
+    // INTERACTIVE DESKTOP APP LOGIC
+    // ==========================================
+    const appScreens = document.querySelectorAll('.app-screen');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const playTriggers = document.querySelectorAll('.play-trigger, .player-play-btn, .list-item.play-trigger');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+    const appWrapper = document.getElementById('desktop-app-wrapper');
+    const btnShowLyrics = document.getElementById('btn-show-lyrics');
+    const btnCloseLyrics = document.querySelector('.btn-close-lyrics');
+    
+    // Navigation Routing
+    function navigateToAppScreen(targetId) {
+        // Handle Lyrics Overlay vs Standard Screens
+        if(targetId === 'lyrics') {
+            document.getElementById('screen-lyrics').classList.add('active');
+            return;
+        } else if (targetId === 'home' || targetId === 'search' || targetId === 'library' || targetId === 'social' || targetId === 'downloads' || targetId === 'playlists' || targetId === 'favorites') {
+            // Close lyrics if open
+            document.getElementById('screen-lyrics').classList.remove('active');
+            
+            // Map sub-library items for demo
+            let actualTarget = targetId;
+            if(targetId === 'playlists' || targetId === 'favorites') actualTarget = 'library';
+            
+            appScreens.forEach(screen => {
+                if(screen.id === 'screen-' + actualTarget) {
+                    screen.classList.add('active');
+                } else {
+                    if(screen.id !== 'screen-lyrics') screen.classList.remove('active'); // Lyrics handled separately
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                if(link.getAttribute('data-target') === targetId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navigateToAppScreen(link.getAttribute('data-target'));
+        });
+    });
+
+    if(btnShowLyrics) {
+        btnShowLyrics.addEventListener('click', () => navigateToAppScreen('lyrics'));
+    }
+    if(btnCloseLyrics) {
+        btnCloseLyrics.addEventListener('click', () => {
+            document.getElementById('screen-lyrics').classList.remove('active');
+        });
+    }
+
+    // Playback Simulation
+    let isPlaying = false;
+    let progressInterval;
+    const playBtnIcon = document.querySelector('.player-play-btn i');
+    const progressFill = document.querySelector('.progress-fill');
+    const timeCurrent = document.querySelector('.time-current');
+    
+    const lyricLines = document.querySelectorAll('.lyric-line');
+    let lyricIdx = 2;
+
+    function toggleAppPlayback() {
+        isPlaying = !isPlaying;
+        if(isPlaying) {
+            playBtnIcon.classList.remove('fa-play');
+            playBtnIcon.classList.add('fa-pause');
+            
+            let progress = parseFloat(progressFill.style.width) || 0;
+            progressInterval = setInterval(() => {
+                progress += 0.5;
+                if(progress > 100) progress = 0;
+                progressFill.style.width = progress + '%';
+                
+                // Format time (simulating 4:03 track)
+                let totalSecs = Math.floor((progress / 100) * 243);
+                let m = Math.floor(totalSecs / 60);
+                let s = totalSecs % 60;
+                timeCurrent.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+                
+                // Lyrics
+                if(Math.random() > 0.95 && lyricIdx < lyricLines.length - 1) {
+                    lyricLines[lyricIdx].classList.remove('active');
+                    lyricLines[lyricIdx].classList.add('past');
+                    lyricIdx++;
+                    lyricLines[lyricIdx].classList.add('active');
+                    lyricLines[lyricIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500);
+        } else {
+            playBtnIcon.classList.remove('fa-pause');
+            playBtnIcon.classList.add('fa-play');
+            clearInterval(progressInterval);
+        }
+    }
+
+    playTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            if(!trigger.classList.contains('player-play-btn')) {
+                // If clicked a card
+                if(!isPlaying) toggleAppPlayback();
+            } else {
+                toggleAppPlayback();
+            }
+        });
+    });
+
+    // Social Join
+    const joinBtns = document.querySelectorAll('.btn-join-room');
+    joinBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if(btn.textContent === 'Join') {
+                btn.textContent = 'Leave';
+                btn.style.background = '#fff';
+                btn.style.color = '#000';
+            } else {
+                btn.textContent = 'Join';
+                btn.style.background = 'transparent';
+                btn.style.color = '#fff';
+            }
+        });
+    });
+
+    // Fullscreen Toggle
+    if(btnFullscreen && appWrapper) {
+        btnFullscreen.addEventListener('click', () => {
+            appWrapper.classList.toggle('fullscreen-mode');
+            if(appWrapper.classList.contains('fullscreen-mode')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
