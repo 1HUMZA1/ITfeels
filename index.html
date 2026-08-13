@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="theme-dark">
     <!-- Sticky Header -->
@@ -228,8 +228,16 @@
                     <h2 class="section-title">Experience IT Feels</h2>
                     <p class="section-subtitle typewriter-text">Explore the app directly in your browser.</p>
                 </div>
+
+                <div class="platform-toggle reveal-up delay-1">
+                    <button class="toggle-btn active" data-platform="desktop"><i class="fa-brands fa-windows"></i> Windows</button>
+                    <button class="toggle-btn" data-platform="phone"><i class="fa-solid fa-mobile-screen"></i> Smartphone</button>
+                </div>
+
                 
-                <div class="desktop-app-wrapper reveal-up" id="desktop-app-wrapper">
+                
+                <div class="platform-views">
+<div class="desktop-app-wrapper reveal-up" id="desktop-app-wrapper">
                     <!-- Title Bar -->
                     <div class="desktop-app-titlebar">
                         <div class="window-controls">
@@ -469,6 +477,254 @@
                         </div>
                     </div>
                 </div>
+<div class="interactive-showcase-wrapper reveal-up">
+                    
+                    <div class="feature-nav-column feature-nav-left">
+                        <button class="feature-nav-card active" data-target="player">
+                            <div class="nav-card-icon"><i class="fa-solid fa-headphones"></i></div>
+                            <div class="nav-card-text">Lossless Streaming</div>
+                        </button>
+                        <button class="feature-nav-card" data-target="lyrics">
+                            <div class="nav-card-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="nav-card-text">Synced Lyrics</div>
+                        </button>
+                    </div>
+
+                    <div class="phone-mockup-container">
+                        <div class="phone-mockup">
+                            <div class="phone-glare"></div>
+                            <div class="phone-bezel">
+                                <div class="phone-notch"></div>
+                                <div class="phone-screen">
+                                    
+                                    <!-- HOME SCREEN -->
+                                    <div class="app-screen active" id="screen-home">
+                                        <div class="app-header">
+                                            <div class="app-logo"><i class="fa-solid fa-compact-disc"></i> IT Feels</div>
+                                            <div class="app-profile"><i class="fa-solid fa-user"></i></div>
+                                        </div>
+                                        <div class="app-content scrollable">
+                                            <div class="app-section">
+                                                <h4 class="app-section-title">Recently Played</h4>
+                                                <div class="app-horizontal-scroll">
+                                                    <div class="app-track-card play-trigger" data-title="Midnight City" data-artist="M83">
+                                                        <div class="app-track-art">MC</div>
+                                                        <div class="app-track-info">Midnight City</div>
+                                                    </div>
+                                                    <div class="app-track-card play-trigger" data-title="Starboy" data-artist="The Weeknd">
+                                                        <div class="app-track-art">SB</div>
+                                                        <div class="app-track-info">Starboy</div>
+                                                    </div>
+                                                    <div class="app-track-card play-trigger" data-title="Blinding Lights" data-artist="The Weeknd">
+                                                        <div class="app-track-art">BL</div>
+                                                        <div class="app-track-info">Blinding Lights</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="app-section">
+                                                <h4 class="app-section-title">Recommended</h4>
+                                                <div class="app-list">
+                                                    <div class="app-list-item play-trigger" data-title="Save Your Tears" data-artist="The Weeknd">
+                                                        <div class="app-list-art">SY</div>
+                                                        <div class="app-list-details">
+                                                            <div class="app-list-title">Save Your Tears</div>
+                                                            <div class="app-list-subtitle">The Weeknd</div>
+                                                        </div>
+                                                        <i class="fa-solid fa-play app-list-action"></i>
+                                                    </div>
+                                                    <div class="app-list-item play-trigger" data-title="Levitating" data-artist="Dua Lipa">
+                                                        <div class="app-list-art">LV</div>
+                                                        <div class="app-list-details">
+                                                            <div class="app-list-title">Levitating</div>
+                                                            <div class="app-list-subtitle">Dua Lipa</div>
+                                                        </div>
+                                                        <i class="fa-solid fa-play app-list-action"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- PLAYER SCREEN -->
+                                    <div class="app-screen" id="screen-player">
+                                        <div class="app-header transparent">
+                                            <button class="app-icon-btn nav-back" data-target="home"><i class="fa-solid fa-chevron-down"></i></button>
+                                            <div class="app-header-title">Now Playing</div>
+                                            <button class="app-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        </div>
+                                        <div class="player-content">
+                                            <div class="player-art-container">
+                                                <div class="player-art pulse-anim">MC</div>
+                                            </div>
+                                            <div class="player-info-row">
+                                                <div class="player-text">
+                                                    <h3 class="player-title">Midnight City</h3>
+                                                    <p class="player-artist">M83</p>
+                                                </div>
+                                                <button class="app-icon-btn text-accent"><i class="fa-solid fa-heart"></i></button>
+                                            </div>
+                                            <div class="player-progress">
+                                                <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+                                                <div class="progress-time">
+                                                    <span class="time-current">1:24</span>
+                                                    <span class="time-total">4:03</span>
+                                                </div>
+                                            </div>
+                                            <div class="player-controls">
+                                                <button class="app-icon-btn"><i class="fa-solid fa-shuffle"></i></button>
+                                                <button class="app-icon-btn"><i class="fa-solid fa-backward-step"></i></button>
+                                                <button class="app-btn-play"><i class="fa-solid fa-play"></i></button>
+                                                <button class="app-icon-btn"><i class="fa-solid fa-forward-step"></i></button>
+                                                <button class="app-icon-btn"><i class="fa-solid fa-repeat"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- LYRICS SCREEN -->
+                                    <div class="app-screen" id="screen-lyrics">
+                                        <div class="app-header transparent">
+                                            <button class="app-icon-btn nav-back" data-target="player"><i class="fa-solid fa-chevron-down"></i></button>
+                                            <div class="app-header-title">Lyrics</div>
+                                            <button class="app-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                        </div>
+                                        <div class="lyrics-content scrollable">
+                                            <div class="lyrics-spacer"></div>
+                                            <p class="lyric-line past">Waiting in a car</p>
+                                            <p class="lyric-line past">Waiting for a ride in the dark</p>
+                                            <p class="lyric-line active">The night city grows</p>
+                                            <p class="lyric-line">Look at the horizon glow</p>
+                                            <p class="lyric-line">Waiting in a car</p>
+                                            <p class="lyric-line">Waiting for a ride in the dark</p>
+                                            <p class="lyric-line">Drinking in the lounge</p>
+                                            <p class="lyric-line">Following the neon signs</p>
+                                            <div class="lyrics-spacer"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- SEARCH SCREEN -->
+                                    <div class="app-screen" id="screen-search">
+                                        <div class="app-header">
+                                            <div class="app-header-title">Search</div>
+                                        </div>
+                                        <div class="app-content scrollable">
+                                            <div class="app-search-bar">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <input type="text" placeholder="Artists, songs, or podcasts">
+                                            </div>
+                                            <h4 class="app-section-title mt-3">Browse All</h4>
+                                            <div class="app-browse-grid">
+                                                <div class="browse-card bg-1">Pop</div>
+                                                <div class="browse-card bg-2">Electronic</div>
+                                                <div class="browse-card bg-3">Rock</div>
+                                                <div class="browse-card bg-4">Hip-Hop</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- LIBRARY SCREEN (Includes Offline Mode) -->
+                                    <div class="app-screen" id="screen-library">
+                                        <div class="app-header">
+                                            <div class="app-header-title">Your Library</div>
+                                            <button class="app-icon-btn"><i class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                        <div class="app-tabs">
+                                            <div class="app-tab">Playlists</div>
+                                            <div class="app-tab active">Offline</div>
+                                        </div>
+                                        <div class="app-content scrollable">
+                                            <div class="app-download-demo">
+                                                <div class="app-list-item">
+                                                    <div class="app-list-art">DV</div>
+                                                    <div class="app-list-details">
+                                                        <div class="app-list-title">Discovery</div>
+                                                        <div class="app-list-subtitle">Album ÔÇó Daft Punk</div>
+                                                    </div>
+                                                    <button class="app-icon-btn download-trigger"><i class="fa-solid fa-arrow-down"></i></button>
+                                                </div>
+                                            </div>
+                                            <h4 class="app-section-title mt-2">Downloaded Music</h4>
+                                            <div class="app-list downloaded-list">
+                                                <div class="app-list-item">
+                                                    <div class="app-list-art">R</div>
+                                                    <div class="app-list-details">
+                                                        <div class="app-list-title">Random Access Memories</div>
+                                                        <div class="app-list-subtitle">Album ÔÇó Daft Punk</div>
+                                                    </div>
+                                                    <i class="fa-solid fa-circle-check text-accent" style="font-size: 0.8rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- SOCIAL ROOMS SCREEN -->
+                                    <div class="app-screen" id="screen-social">
+                                        <div class="app-header">
+                                            <div class="app-header-title">Social Rooms</div>
+                                            <button class="app-icon-btn"><i class="fa-solid fa-user-group"></i></button>
+                                        </div>
+                                        <div class="app-content scrollable">
+                                            <h4 class="app-section-title">Live Now</h4>
+                                            <div class="app-room-card">
+                                                <div class="room-info">
+                                                    <h3 class="room-title">Late Night Synthwave</h3>
+                                                    <p class="room-host">Hosted by @humza</p>
+                                                </div>
+                                                <div class="room-stats">
+                                                    <div class="room-listeners"><i class="fa-solid fa-headphones"></i> 142</div>
+                                                    <button class="app-btn-small join-room-btn">Join</button>
+                                                </div>
+                                            </div>
+                                            <div class="app-room-card">
+                                                <div class="room-info">
+                                                    <h3 class="room-title">Global Top 50 Party</h3>
+                                                    <p class="room-host">Hosted by @alex</p>
+                                                </div>
+                                                <div class="room-stats">
+                                                    <div class="room-listeners"><i class="fa-solid fa-headphones"></i> 89</div>
+                                                    <button class="app-btn-small join-room-btn">Join</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- BOTTOM NAV -->
+                                    <div class="app-bottom-nav">
+                                        <button class="bottom-nav-item active" data-target="home">
+                                            <i class="fa-solid fa-house"></i>
+                                            <span>Home</span>
+                                        </button>
+                                        <button class="bottom-nav-item" data-target="search">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <span>Search</span>
+                                        </button>
+                                        <button class="bottom-nav-item" data-target="library">
+                                            <i class="fa-solid fa-book-open"></i>
+                                            <span>Library</span>
+                                        </button>
+                                        <button class="bottom-nav-item" data-target="social">
+                                            <i class="fa-solid fa-users"></i>
+                                            <span>Social</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-nav-column feature-nav-right">
+                        <button class="feature-nav-card" data-target="social">
+                            <div class="nav-card-icon"><i class="fa-solid fa-users"></i></div>
+                            <div class="nav-card-text">Social Rooms</div>
+                        </button>
+                        <button class="feature-nav-card" data-target="library">
+                            <div class="nav-card-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                            <div class="nav-card-text">Offline Mode</div>
+                        </button>
+                    </div>
+
+                </div>
+                </div>
 
             </div>
         </section>
@@ -582,6 +838,6 @@
         </div>
     </footer>
 
-    <script src="main.js?v=4"></script>
+    <script src="main.js?v=5"></script>
 </body>
 </html>
