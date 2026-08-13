@@ -552,15 +552,25 @@ img, video {
 .bento-large .bento-desc { font-size: 1.1rem; max-width: 80%; }
 
 .bento-visual {
-    position: absolute;
-    bottom: -5%;
-    right: -5%;
-    width: 80%;
+    position: relative;
+    margin-top: auto;
+    width: 100%;
+    height: 180px;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-large .bento-visual {
+    height: 280px;
+    margin-top: 2rem;
+}
+
+.bento-medium .bento-visual {
+    height: 220px;
+    margin-top: 1.5rem;
 }
 
 .media-placeholder {
@@ -580,11 +590,7 @@ img, video {
     margin-right: 0.5rem;
 }
 
-.bento-visual.visual-sm {
-    bottom: -10%;
-    right: 5%;
-    width: 40%;
-}
+/* Remove visual-sm overrides since they now flow naturally */
 
 .bento-card:hover .bento-visual {
     transform: translateY(-10px) scale(1.02);
