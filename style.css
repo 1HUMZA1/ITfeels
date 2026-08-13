@@ -260,9 +260,11 @@ img, video {
 .badge-icon { color: #fff; }
 
 .hero-title {
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    margin-bottom: 1rem;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
