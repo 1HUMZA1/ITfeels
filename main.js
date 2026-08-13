@@ -295,4 +295,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    }
+
+    // --- 10. Fetch Latest GitHub Release ---
+    async function fetchLatestRelease() {
+        try {
+            const response = await fetch('https://api.github.com/repos/Allrounder687/it-feels-android/releases/latest');
+            if (!response.ok) return;
+            const release = await response.json();
+            
+            const allReleasesLink = document.getElementById('all-releases-link');
+            if (allReleasesLink) {
+                allReleasesLink.href = release.html_url;
+            }
+
+            const assets = release.assets;
+            assets.forEach(asset => {
+                const sizeMB = (asset.size / (1024 * 1024)).toFixed(0) + ' MB';
+                const url = asset.browser_download_url;
+                const name = asset.name.toLowerCase();
+
+                if (name.endsWith('.msix')) {
+                    const elSize = document.getElementById('windows-size');
+                    const elBtn = document.getElementById('windows-download');
+                    if (elSize) elSize.textContent = sizeMB;
+                    if (elBtn) elBtn.href = url;
+                } else if (name.endsWith('.dmg')) {
+                    const elSize = document.getElementById('macos-size');
+                    const elBtn = document.getElementById('macos-download');
+                    if (elSize) elSize.textContent = sizeMB;
+                    if (elBtn) elBtn.href = url;
+                } else if (name.endsWith('.apk')) {
+                    const elSize = document.getElementById('android-size');
+                    const elBtn = document.getElementById('android-download');
+                    if (elSize) elSize.textContent = sizeMB;
+                    if (elBtn) elBtn.href = url;
+                } else if (name.endsWith('.ipa')) {
+                    const elSize = document.getElementById('ios-size');
+                    const elBtn = document.getElementById('ios-download');
+                    if (elSize) elSize.textContent = sizeMB;
+                    if (elBtn) elBtn.href = url;
+                }
+            });
+        } catch (error) {
+            console.error('Failed to fetch latest release:', error);
+        }
+    }
+    
+    // Auto-fetch if we are on the download page
+    if (document.getElementById('all-releases-link')) {
+        fetchLatestRelease();
+    }
+
 });
