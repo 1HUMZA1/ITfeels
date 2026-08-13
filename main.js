@@ -138,6 +138,50 @@ document.addEventListener('DOMContentLoaded', () => {
         lineProgress.style.width = '100%';
     }
 
+    // --- Generic Typewriter Effect for Elements ---
+    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    if (typewriterElements.length > 0) {
+        const typeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    if (el.dataset.typed === "true") return;
+                    el.dataset.typed = "true";
+                    
+                    const text = el.getAttribute('data-text');
+                    const speed = el.getAttribute('data-speed') ? parseFloat(el.getAttribute('data-speed')) : 13; // 13ms = ~4.5x normal 60ms speed
+                    
+                    el.textContent = '';
+                    let i = 0;
+                    function typeWriter() {
+                        if (i < text.length) {
+                            el.textContent += text.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, speed);
+                        }
+                    }
+                    setTimeout(typeWriter, 300); // small delay after revealing
+                    observer.unobserve(el);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        typewriterElements.forEach(el => {
+            if (!el.hasAttribute('data-text')) {
+                el.setAttribute('data-text', el.textContent.trim());
+            }
+            // Preserve height to avoid layout shift when cleared
+            const rect = el.getBoundingClientRect();
+            if (rect.height > 0) el.style.minHeight = rect.height + 'px';
+            el.textContent = ''; // clear initial text
+            typeObserver.observe(el);
+        });
+    }
+
     // --- 7. Hero Typing Animation ---
     const typingTitle = document.getElementById('typing-title');
     if (typingTitle) {
@@ -257,94 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 downloadBtn.textContent = 'Download';
             }
         });
-    }
-    }
-
-    // --- 9. Scroll Typewriter Animation ---
-    const typewriterElements = document.querySelectorAll('.typewriter-scroll');
-    if (typewriterElements.length > 0) {
-        const typeObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const text = el.getAttribute('data-original-text');
-                    el.textContent = '';
-                    let i = 0;
-                    const speed = 13; // ~4.5x faster than 60ms
-                    
-                    function typeWriter() {
-                        if (i < text.length) {
-                            el.textContent += text.charAt(i);
-                            i++;
-                            setTimeout(typeWriter, speed);
-                        }
-                    }
-                    typeWriter();
-                    
-                    observer.unobserve(el);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        typewriterElements.forEach(el => {
-            el.setAttribute('data-original-text', el.textContent.trim());
-            el.textContent = ''; // Clear text before scrolling into view
-            typeObserver.observe(el);
-        });
-    }
-
-    }
-
-    // --- 10. Fetch Latest GitHub Release ---
-    async function fetchLatestRelease() {
-        try {
-            const response = await fetch('https://api.github.com/repos/Allrounder687/it-feels-android/releases/latest');
-            if (!response.ok) return;
-            const release = await response.json();
-            
-            const allReleasesLink = document.getElementById('all-releases-link');
-            if (allReleasesLink) {
-                allReleasesLink.href = release.html_url;
-            }
-
-            const assets = release.assets;
-            assets.forEach(asset => {
-                const sizeMB = (asset.size / (1024 * 1024)).toFixed(0) + ' MB';
-                const url = asset.browser_download_url;
-                const name = asset.name.toLowerCase();
-
-                if (name.endsWith('.msix')) {
-                    const elSize = document.getElementById('windows-size');
-                    const elBtn = document.getElementById('windows-download');
-                    if (elSize) elSize.textContent = sizeMB;
-                    if (elBtn) elBtn.href = url;
-                } else if (name.endsWith('.dmg')) {
-                    const elSize = document.getElementById('macos-size');
-                    const elBtn = document.getElementById('macos-download');
-                    if (elSize) elSize.textContent = sizeMB;
-                    if (elBtn) elBtn.href = url;
-                } else if (name.endsWith('.apk')) {
-                    const elSize = document.getElementById('android-size');
-                    const elBtn = document.getElementById('android-download');
-                    if (elSize) elSize.textContent = sizeMB;
-                    if (elBtn) elBtn.href = url;
-                } else if (name.endsWith('.ipa')) {
-                    const elSize = document.getElementById('ios-size');
-                    const elBtn = document.getElementById('ios-download');
-                    if (elSize) elSize.textContent = sizeMB;
-                    if (elBtn) elBtn.href = url;
-                }
-            });
-        } catch (error) {
-            console.error('Failed to fetch latest release:', error);
-        }
-    }
-    
-    // Auto-fetch if we are on the download page
-    if (document.getElementById('all-releases-link')) {
-        fetchLatestRelease();
     }
 
 });
