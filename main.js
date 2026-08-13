@@ -141,43 +141,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 7. Hero Typing Animation ---
     const typingTitle = document.getElementById('typing-title');
     if (typingTitle) {
-        const words = [
-            "FEEL THE MUSIC.",
-            "Powered by IT Feels Engine.",
-            "WEBSITE developed by HUMZA."
-        ];
-        
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        
-        function typeWriter() {
-            const currentWord = words[wordIndex];
-            
-            if (isDeleting) {
-                typingTitle.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingTitle.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            let typeSpeed = isDeleting ? 30 : 60;
-            
-            if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // Pause at end of word
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500; // Pause before typing new word
-            }
-            
-            setTimeout(typeWriter, typeSpeed);
-        }
+        const textToType = "FEEL THE MUSIC.";
+        let i = 0;
         
         // Wait for reveal-up animation to settle
-        setTimeout(typeWriter, 800);
+        setTimeout(() => {
+            function typeWriter() {
+                if (i < textToType.length) {
+                    typingTitle.textContent += textToType.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 60); // 60ms per character
+                }
+            }
+            typeWriter();
+        }, 800);
+    }
+
+    // --- Footer Typing Animation ---
+    const footerTypingTitle = document.getElementById('footer-typing-title');
+    if (footerTypingTitle) {
+        const textToType = "- DEVELOPED BY HUMZA.";
+        let i = 0;
+        
+        // Start typing shortly after page load
+        setTimeout(() => {
+            function footerTypeWriter() {
+                if (i < textToType.length) {
+                    footerTypingTitle.textContent += textToType.charAt(i);
+                    i++;
+                    setTimeout(footerTypeWriter, 60); // 60ms per character
+                }
+            }
+            footerTypeWriter();
+        }, 1500);
     }
 
     // --- 8. Hero Parallax Zoom ---
