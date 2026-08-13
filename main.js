@@ -180,7 +180,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 800);
     }
 
-    // --- 7. Feature Section Interactions ---
+    // --- 8. Hero Parallax Zoom ---
+    const heroMockupInner = document.getElementById('hero-mockup-inner');
+    if (heroMockupInner) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            // Scale increases as you scroll down, maxes out at 1.15
+            const scale = 1 + Math.min(scrollY * 0.0005, 0.15);
+            heroMockupInner.style.transform = `scale(${scale})`;
+        });
+    }
+
+    // --- 9. Feature Section Interactions ---
     
     // Lossless Format Toggle
     const formatBtn = document.getElementById('formatToggleBtn');
