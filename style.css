@@ -445,7 +445,7 @@ img, video {
 }
 
 /* Soft Radial Glow on Hover */
-.bento-card::before {
+.bento-card::before, .download-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -456,7 +456,7 @@ img, video {
     z-index: 0;
 }
 
-.bento-card:hover::before {
+.bento-card:hover::before, .download-card:hover::before {
     opacity: 1;
 }
 
@@ -788,6 +788,13 @@ img, video {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .download-card:hover {
