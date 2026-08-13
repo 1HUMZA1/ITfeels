@@ -336,11 +336,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function navigateToAppScreen(targetId) {
         // Handle Lyrics Overlay vs Standard Screens
         if(targetId === 'lyrics') {
-            document.getElementById('screen-lyrics').classList.add('active');
+            document.getElementById('phone-screen-lyrics').classList.add('active');
             return;
         } else if (targetId === 'home' || targetId === 'search' || targetId === 'library' || targetId === 'social' || targetId === 'downloads' || targetId === 'playlists' || targetId === 'favorites') {
             // Close lyrics if open
-            document.getElementById('screen-lyrics').classList.remove('active');
+            let lyricsScreen = document.getElementById('phone-screen-lyrics'); if(lyricsScreen) lyricsScreen.classList.remove('active');
             
             // Map sub-library items for demo
             let actualTarget = targetId;
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if(btnCloseLyrics) {
         btnCloseLyrics.addEventListener('click', () => {
-            document.getElementById('screen-lyrics').classList.remove('active');
+            let lyricsScreen = document.getElementById('phone-screen-lyrics'); if(lyricsScreen) lyricsScreen.classList.remove('active');
         });
     }
 
@@ -459,5 +459,178 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 document.body.style.overflow = '';
             }
+        });
+    }
+
+
+    // ==========================================
+    // INTERACTIVE PHONE SHOWCASE LOGIC
+    // ==========================================
+    const phoneScreens = document.querySelectorAll('.phone-mockup .app-screen');
+    const phoneBottomNavItems = document.querySelectorAll('.phone-mockup .bottom-nav-item');
+    const phoneFeatureNavCards = document.querySelectorAll('.feature-nav-card');
+    const phoneNavBackBtns = document.querySelectorAll('.phone-mockup .nav-back');
+    const phonePlayTriggers = document.querySelectorAll('.phone-mockup .play-trigger, .phone-mockup .app-btn-play');
+    
+    // Navigation Function
+    function navigateToPhoneScreen(targetId) {
+        // Update Screens
+        phoneScreens.forEach(screen => {
+            if(screen.id === 'phone-screen-' + targetId) {
+                screen.classList.add('active');
+            } else {
+                screen.classList.remove('active');
+            }
+        });
+        
+        // Update Bottom Nav
+        phoneBottomNavItems.forEach(item => {
+            if(item.getAttribute('data-target') === targetId) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Update External Feature Cards (only for major views)
+        phoneFeatureNavCards.forEach(card => {
+            if(card.getAttribute('data-target') === targetId) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+    }
+
+    // Attach listeners to bottom nav
+    phoneBottomNavItems.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigateToPhoneScreen(btn.getAttribute('data-target'));
+        });
+    });
+
+    // Attach listeners to external feature cards
+    phoneFeatureNavCards.forEach(card => {
+        card.addEventListener('click', () => {
+            navigateToPhoneScreen(card.getAttribute('data-target'));
+        });
+    });
+
+    // Attach listeners to back buttons (like chevron down from player/lyrics)
+    phoneNavBackBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            navigateToPhoneScreen(btn.getAttribute('data-target'));
+        });
+    });
+
+    // Simulated Playback Logic
+    let isPhonePlaying = false;
+    let phoneProgressInterval;
+    const phonePlayBtnIcon = document.querySelector('.phone-mockup .app-btn-play i');
+    const phoneProgressBarFill = document.querySelector('.phone-mockup .progress-bar-fill');
+    const phonePulseArt = document.querySelector('.phone-mockup .player-art');
+    
+    // Lyrics Simulation
+    const phoneLyricLines = document.querySelectorAll('.phone-mockup .lyric-line');
+    let phoneCurrentLyricIndex = 2; // Starts at 3rd line active
+
+    function togglePhonePlayback() {
+        isPhonePlaying = !isPhonePlaying;
+        
+        if (isPhonePlaying) {
+            if(phonePlayBtnIcon) {
+                phonePlayBtnIcon.classList.remove('fa-play');
+                phonePlayBtnIcon.classList.add('fa-pause');
+            }
+            if(phonePulseArt) phonePulseArt.classList.add('pulse-anim');
+            
+            // Simulate progress bar moving
+            let progress = parseInt(phoneProgressBarFill?.style.width || 0) || 30;
+            phoneProgressInterval = setInterval(() => {
+                progress += 0.5;
+                if(progress > 100) progress = 0;
+                if(phoneProgressBarFill) phoneProgressBarFill.style.width = progress + '%';
+                
+                // Simulate lyrics advancing every few seconds randomly
+                if(Math.random() > 0.95 && phoneCurrentLyricIndex < phoneLyricLines.length - 1) {
+                    phoneLyricLines[phoneCurrentLyricIndex].classList.remove('active');
+                    phoneLyricLines[phoneCurrentLyricIndex].classList.add('past');
+                    phoneCurrentLyricIndex++;
+                    phoneLyricLines[phoneCurrentLyricIndex].classList.add('active');
+                    // Scroll into view
+                    phoneLyricLines[phoneCurrentLyricIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500);
+            
+        } else {
+            if(phonePlayBtnIcon) {
+                phonePlayBtnIcon.classList.remove('fa-pause');
+                phonePlayBtnIcon.classList.add('fa-play');
+            }
+            if(phonePulseArt) phonePulseArt.classList.remove('pulse-anim');
+            clearInterval(phoneProgressInterval);
+        }
+    }
+
+    // Attach play toggle to list items and main play button
+    phonePlayTriggers.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if(!btn.classList.contains('app-btn-play')) {
+                // If it was a list item, auto-navigate to player and start playing
+                navigateToPhoneScreen('player');
+                if(!isPhonePlaying) togglePhonePlayback();
+            } else {
+                // Main play button toggle
+                togglePhonePlayback();
+            }
+        });
+    });
+
+    // Social Rooms Join Toggle
+    const phoneJoinRoomBtns = document.querySelectorAll('.phone-mockup .join-room-btn');
+    phoneJoinRoomBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if(btn.textContent === 'Join') {
+                btn.textContent = 'Leave';
+                btn.style.background = 'var(--text-primary)';
+                btn.style.color = '#000';
+            } else {
+                btn.textContent = 'Join';
+                btn.style.background = 'rgba(255,255,255,0.1)';
+                btn.style.color = 'var(--text-primary)';
+            }
+        });
+    });
+
+    // Offline Download Demo
+    const phoneDownloadTrigger = document.querySelector('.phone-mockup .download-trigger');
+    const phoneDownloadedList = document.querySelector('.phone-mockup .downloaded-list');
+    
+    if(phoneDownloadTrigger && phoneDownloadedList) {
+        phoneDownloadTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const icon = phoneDownloadTrigger.querySelector('i');
+            
+            // Simulate download process
+            icon.className = 'fa-solid fa-spinner fa-spin';
+            
+            setTimeout(() => {
+                icon.className = 'fa-solid fa-circle-check text-accent';
+                phoneDownloadTrigger.style.pointerEvents = 'none';
+                
+                // Add to downloaded list visually
+                const newItem = document.createElement('div');
+                newItem.className = 'app-list-item reveal';
+                newItem.innerHTML = `
+                    <div class="app-list-art">DV</div>
+                    <div class="app-list-details">
+                        <div class="app-list-title">Discovery</div>
+                        <div class="app-list-subtitle">Album • Daft Punk</div>
+                    </div>
+                    <i class="fa-solid fa-circle-check text-accent" style="font-size: 0.8rem;"></i>
+                `;
+                phoneDownloadedList.insertBefore(newItem, phoneDownloadedList.firstChild);
+            }, 1500);
         });
     }
